@@ -15,16 +15,16 @@ class ShoppingCart:
     def remove_book(self, index):
         try:
             book = self.books.pop(index)
-            print("Buku", book.title, "berhasil dihapus dari keranjang.")
+            print(f"Buku {book.title} berhasil dihapus dari keranjang.")
         except IndexError:
             print("Indeks buku tidak valid. Silakan coba lagi.")
 
     def total_price(self):
-        return sum([book.price for book in self.books])
+        return sum(book.price for book in self.books)
 
 
 # Daftar buku
-books = [
+BOOKS = [
     Book("The Alchemist", "Paulo Coelho", 85.0),
     Book("The Da Vinci Code", "Dan Brown", 110.0),
     Book("To Kill a Mockingbird", "Harper Lee", 70.0),
@@ -38,6 +38,43 @@ books = [
 ]
 
 # Program Utama
+def display_books():
+    print("Daftar buku:")
+    for i, book in enumerate(BOOKS):
+        print(f"{i+1} - {book.title} oleh {book.author} (Rp {book.price})")
+        """
+        book.title diambil dari atribut title pada objek book yang diberikan pada metode add_book() di kelas ShoppingCart.
+        Saat metode add_book() dipanggil dengan objek buku sebagai argumen, objek buku tersebut dimasukkan ke dalam daftar self.books yang didefinisikan dalam metode __init__() di kelas ShoppingCart. 
+        Kemudian, saat metode display_cart() dipanggil,objek buku dari daftar self.books diproses dalam loop for yang mengambil atribut title dari objek buku dengan menggunakan sintaks book.title.
+        """
+
+def add_book_to_cart():
+    book_choice = int(input("Masukkan nomor buku yang ingin ditambahkan ke keranjang: "))
+    if 1 <= book_choice <= len(BOOKS):
+        book = BOOKS[book_choice-1]
+        cart.add_book(book)
+        print(f"Buku {book.title} berhasil ditambahkan ke keranjang.")
+    else:
+        print("Nomor buku tidak valid. Silakan coba lagi.")
+
+def display_cart():
+    print("Keranjang belanja:")
+    if len(cart.books) == 0:
+        print("Keranjang belanja kosong.")
+    else:
+        for i, book in enumerate(cart.books):
+            print(f"{i+1} - {book.title} oleh {book.author} (Rp {book.price})")
+
+def remove_book_from_cart():
+    try:
+        index = int(input("Masukkan nomor buku yang ingin dihapus dari keranjang: ")) - 1
+        cart.remove_book(index)
+    except ValueError:
+        print("Nomor buku tidak valid. Silakan coba lagi.")
+
+def display_total_price():
+    print(f"Total harga keranjang belanja: Rp {cart.total_price()}")
+
 cart = ShoppingCart()
 
 while True:
@@ -47,48 +84,20 @@ while True:
     print("4. Hapus buku dari keranjang")
     print("5. Tampilkan total harga")
     print("6. Keluar")
-    choice = input("Masukkan pilihan Anda (1/2/3/4/5/6): ")
-
+    choice = input("Masukkan pilihan Anda (1/2/3/4/5/6)\n")
     if choice == "1":
-        print("Daftar buku:")
-        for i, book in enumerate(books):
-            print(f"{i+1} - {book.title} oleh {book.author} (Rp {book.price})")
-            """
-            book.title diambil dari atribut title pada objek book yang diberikan pada metode add_book() di kelas ShoppingCart.
-            Saat metode add_book() dipanggil dengan objek buku sebagai argumen, objek buku tersebut dimasukkan ke dalam daftar self.books yang didefinisikan dalam metode __init__() di kelas ShoppingCart. 
-            Kemudian, saat metode display_cart() dipanggil,objek buku dari daftar self.books diproses dalam loop for yang mengambil atribut title dari objek buku dengan menggunakan sintaks book.title.
-            """
+      display_books()
     elif choice == "2":
-        book_choice = int(input("Masukkan nomor buku yang ingin ditambahkan ke keranjang: "))
-        if 1 <= book_choice <= len(books):
-            book = books[book_choice-1]
-            cart.add_book(book)
-            print(f"Buku {book.title} berhasil ditambahkan ke keranjang.")
-        else:
-            print("Nomor buku tidak valid. Silakan coba lagi.")
-
+      add_book_to_cart()
     elif choice == "3":
-        print("Keranjang belanja:")
-        if len(cart.books) == 0:
-            print("Keranjang belanja kosong.")
-        else:
-            for i, book in enumerate(cart.books):
-                print(f"{i+1} - {book.title} oleh {book.author} (Rp {book.price})")
-
+      display_cart()
     elif choice == "4":
-        try:
-            index = int(input("Masukkan nomor buku yang ingin dihapus dari keranjang: ")) - 1
-            cart.remove_book(index)
-            print("Buku sudah terhapus")
-        except ValueError:
-            print("Nomor buku tidak valid. Silakan coba lagi.")
-
+      remove_book_from_cart()
     elif choice == "5":
-        print("Total harga keranjang belanja: Rp", cart.total_price())
-
+      display_total_price()
     elif choice == "6":
-        print("Terima kasih telah berbelanja!")
-        break
-
+      print("Terima kasih telah berbelanja di toko buku kami.")
+      break
     else:
       print("Pilihan tidak valid. Silakan coba lagi.")
+
