@@ -53,7 +53,11 @@ while True:
         print("Daftar buku:")
         for i, book in enumerate(books):
             print(f"{i+1} - {book.title} oleh {book.author} (Rp {book.price})")
-
+            """
+            book.title diambil dari atribut title pada objek book yang diberikan pada metode add_book() di kelas ShoppingCart.
+            Saat metode add_book() dipanggil dengan objek buku sebagai argumen, objek buku tersebut dimasukkan ke dalam daftar self.books yang didefinisikan dalam metode __init__() di kelas ShoppingCart. 
+            Kemudian, saat metode display_cart() dipanggil,objek buku dari daftar self.books diproses dalam loop for yang mengambil atribut title dari objek buku dengan menggunakan sintaks book.title.
+            """
     elif choice == "2":
         book_choice = int(input("Masukkan nomor buku yang ingin ditambahkan ke keranjang: "))
         if 1 <= book_choice <= len(books):
