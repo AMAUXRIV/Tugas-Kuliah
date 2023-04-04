@@ -37,7 +37,7 @@ Kode ini adalah contoh program Python untuk menghitung gaji karyawan berdasarkan
 
 ✅ Untuk menggunakan program ini, buat objek Employee dengan memberikan nilai untuk atributnya, lalu panggil method get_salary() untuk mendapatkan gaji bersihnya. Contoh:
 
-emp1 = Employee("Budi", 8000000, 2, 2, True)
+emp1 = Employee("Udin", 8000000, 2, 2, True)
 print(emp1.get_salary())
 
 Output:
