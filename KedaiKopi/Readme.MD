@@ -2,7 +2,7 @@
 AnandaKafe adalah program sederhana untuk memesan kopi di Ananda Coffe. Program ini dibuat menggunakan bahasa pemrograman Python.
 
 ## ◽ Cara Penggunaan
-⨀ Jalankan file anandakafe.py.<br>
+⨀ Jalankan file index.py.<br>
 ⨀ Pilih menu kopi yang ingin dipesan dengan memasukkan kode menu (A, B, C, atau D).<br>
 ⨀ Masukkan jumlah pesanan.<br>
 ⨀ Program akan menampilkan detail pesanan, termasuk harga, diskon, PPN, dan total harga yang harus dibayar.<br>
